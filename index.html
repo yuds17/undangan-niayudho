@@ -53,7 +53,6 @@
     }
 
     /* --- OVERLAY ENVELOPE / AMPLOP --- */
-    /* --- OVERLAY ENVELOPE / AMPLOP (RESPONSIF & PRESISI DI TENGAH) --- */
     .envelope-overlay {
       position: fixed;
       top: 0;
@@ -65,7 +64,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 20px; /* Jarak aman untuk layar HP kecil */
+      padding: 20px;
       transition: opacity 1s ease, visibility 1s ease;
     }
 
@@ -78,7 +77,7 @@
     .envelope-wrapper {
       position: relative;
       width: 100%;
-      max-width: 320px; /* Menggunakan max-width agar responsif di HP kecil */
+      max-width: 320px;
       height: 480px;
       background: #fdfbf7;
       border-radius: 12px;
@@ -94,7 +93,6 @@
       margin: 0 auto;
     }
 
-    /* Flap Top (Penutup Amplop dengan Clip-Path agar Presisi) */
     .envelope-flap {
       position: absolute;
       top: 0;
@@ -102,14 +100,12 @@
       width: 100%;
       height: 150px;
       background-color: #e2d5c3;
-      /* Menggunakan clip-path menggantikan border-triangle agar selalu pas 100% lebar kartu */
       clip-path: polygon(0 0, 100% 0, 50% 100%);
       transform-origin: top;
       transition: transform 0.8s ease-in-out;
       z-index: 5;
     }
 
-    /* Kertas Dalam Amplop */
     .envelope-card {
       position: relative;
       z-index: 2;
@@ -147,7 +143,6 @@
       margin-top: 5px;
     }
 
-    /* Wax Seal Button (Tombol Buka) */
     .open-btn {
       position: relative;
       z-index: 6;
@@ -171,13 +166,10 @@
       transform: scale(1.05);
     }
 
-    /* Animasi Buka Amplop */
     .envelope-wrapper.open .envelope-flap {
       transform: rotateX(180deg);
       z-index: 1;
     }
-
-    /* --- END OVERLAY ENVELOPE --- */
 
     .font-tangerine {
       font-family: 'Tangerine', cursive;
@@ -830,7 +822,7 @@
         <div class="envelope-title">WEDDING INVITATION</div>
         <div class="envelope-names">Nia & Yudho</div>
         <div class="envelope-guest">Kepada Yth.<br>Bapak/Ibu/Saudara/i:</div>
-        <div class="envelope-guest-name">Tamu Undangan</div>
+        <div class="envelope-guest-name" id="guestName">Tamu Undangan</div>
       </div>
 
       <button class="open-btn" onclick="openEnvelope()">
@@ -991,6 +983,11 @@
       </form>
     </div>
 
+    <!-- List Ucapan Tamu -->
+    <div class="wishes-container" id="wishesContainer" data-aos="fade-up" data-aos-duration="1000">
+      <p style="text-align: center; color: var(--text-muted); font-size: 0.85rem;">Memuat ucapan...</p>
+    </div>
+
     <!-- Amplop Digital Section -->
     <div data-aos="fade-up" data-aos-duration="1000">
       <div class="subtitle">AMPLOP DIGITAL</div>
@@ -1050,20 +1047,28 @@
   <script>
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwkAcRQjHakVH19pbtoXiaGjKU_uVZKrvCbOSUz8WNcjFsd0548tU3wXo-OwVvtaag/exec";
 
+    // Ambil nama tamu dari URL (contoh: index.html?to=Budi)
+    window.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const guestName = urlParams.get('to');
+      if (guestName) {
+        document.getElementById('guestName').innerText = guestName;
+        document.getElementById('nama').value = guestName;
+      }
+      loadWishes();
+    });
+
     // Fungsi Animasi Buka Amplop
     function openEnvelope() {
       const wrapper = document.getElementById('envelopeWrapper');
       const overlay = document.getElementById('envelopeOverlay');
       
-      // 1. Putar flap amplop ke atas
       wrapper.classList.add('open');
       
-      // 2. Setelah animasi flap selesai, pudarkan overlay sampul
       setTimeout(() => {
         overlay.classList.add('hide-envelope');
         document.body.classList.remove('no-scroll');
         
-        // Inisialisasi AOS Animation setelah amplop dibuka
         AOS.init({ once: true });
       }, 700);
     }
@@ -1096,6 +1101,7 @@
     setInterval(updateCountdown, 1000);
     updateCountdown();
 
+    // Copy Rekening
     function copyRekening() {
       const rekText = document.getElementById('rekening').innerText;
       navigator.clipboard.writeText(rekText).then(() => {
@@ -1116,40 +1122,72 @@
       document.getElementById('thankYouModal').classList.remove('active');
     }
 
-    // Submit RSVP ke Database (Google Sheets)
+    // Submit Form RSVP ke Google Sheet
     function submitRSVP(e) {
       e.preventDefault();
-      
       const submitBtn = document.getElementById('submitBtn');
       submitBtn.disabled = true;
       submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
 
-      const data = {
-        nama: document.getElementById('nama').value,
-        kehadiran: document.querySelector('input[name="kehadiran"]:checked').value,
-        ucapan: document.getElementById('ucapan').value || "-"
-      };
+      const nama = document.getElementById('nama').value;
+      const kehadiran = document.querySelector('input[name="kehadiran"]:checked').value;
+      const ucapan = document.getElementById('ucapan').value;
+
+      const formData = new FormData();
+      formData.append('nama', nama);
+      formData.append('kehadiran', kehadiran);
+      formData.append('ucapan', ucapan);
 
       fetch(SCRIPT_URL, {
         method: 'POST',
-        mode: 'no-cors',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
+        body: formData
       })
-      .then(() => {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Kirim Konfirmasi';
-        document.getElementById('rsvpForm').reset();
+      .then(res => res.json())
+      .then(data => {
         showModal();
+        document.getElementById('rsvpForm').reset();
+        loadWishes();
       })
-      .catch(error => {
-        console.error('Error:', error);
-        alert('Terjadi kesalahan saat menyimpan data.');
+      .catch(err => {
+        console.error('Error!', err.message);
+        showModal();
+        loadWishes();
+      })
+      .finally(() => {
         submitBtn.disabled = false;
         submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Kirim Konfirmasi';
       });
+    }
+
+    // Fetch / Load Data Ucapan Tamu
+    function loadWishes() {
+      fetch(SCRIPT_URL)
+        .then(res => res.json())
+        .then(data => {
+          const wishesContainer = document.getElementById('wishesContainer');
+          if (data && data.length > 0) {
+            let html = '';
+            // Tampilkan ucapan terbaru di atas (reverse)
+            data.reverse().forEach(item => {
+              const statusClass = item.kehadiran === 'Hadir' ? 'status-hadir' : 'status-tidak';
+              html += `
+                <div class="wish-item">
+                  <div class="wish-header">
+                    <span class="wish-name">${item.nama}</span>
+                    <span class="wish-status ${statusClass}">${item.kehadiran}</span>
+                  </div>
+                  <div class="wish-text">${item.ucapan || '-'}</div>
+                </div>
+              `;
+            });
+            wishesContainer.innerHTML = html;
+          } else {
+            wishesContainer.innerHTML = '<p style="text-align: center; color: var(--text-muted); font-size: 0.85rem;">Belum ada ucapan.</p>';
+          }
+        })
+        .catch(() => {
+          document.getElementById('wishesContainer').innerHTML = '<p style="text-align: center; color: var(--text-muted); font-size: 0.85rem;">Belum ada ucapan tersimpan.</p>';
+        });
     }
   </script>
 </body>
