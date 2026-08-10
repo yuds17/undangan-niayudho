@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Wedding of Nia \n&\nYudho</title>
+  <title>The Wedding of Nia & Yudho</title>
   
   <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -50,7 +50,7 @@
       margin: 0 auto;
     }
 
-    /* Animasi Heartbeat & Floating */
+    /* Keyframe Animations */
     @keyframes heartbeat {
       0% { transform: scale(1); }
       14% { transform: scale(1.15); }
@@ -356,6 +356,126 @@
       box-shadow: 0 0 0 1px var(--primary-brown);
     }
 
+    /* Amplop Digital / ATM Card Styling */
+    .bank-card {
+      background: linear-gradient(135deg, #ffffff 0%, #f7f3ed 100%);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 25px 25px;
+      text-align: left;
+      position: relative;
+      box-shadow: 0 10px 25px rgba(140, 106, 60, 0.06);
+      margin-top: 25px;
+      margin-bottom: 60px;
+      overflow: hidden;
+    }
+
+    .bank-card::before {
+      content: "";
+      position: absolute;
+      top: -30px;
+      right: -30px;
+      width: 120px;
+      height: 120px;
+      background: rgba(140, 106, 60, 0.04);
+      border-radius: 50%;
+    }
+
+    .bank-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .chip {
+      width: 42px;
+      height: 30px;
+      background: linear-gradient(135deg, #e0c38c 0%, #b89252 100%);
+      border-radius: 6px;
+      position: relative;
+    }
+
+    .chip::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: rgba(0,0,0,0.15);
+    }
+
+    .bank-logo {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #003d79; /* Mandiri Blue Style */
+      letter-spacing: 0.5px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .account-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      letter-spacing: 2px;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .account-holder {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .btn-copy {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      background: var(--white);
+      border: 1px solid var(--border-color);
+      color: var(--primary-brown);
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      transition: all 0.3s ease;
+    }
+
+    .btn-copy:hover {
+      background: var(--primary-brown);
+      color: var(--white);
+      border-color: var(--primary-brown);
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--text-dark);
+      color: var(--white);
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease;
+      z-index: 1000;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+    }
+
     /* Quote Box */
     .quote-card {
       background-color: var(--card-bg);
@@ -411,7 +531,7 @@
     <!-- Hero Header -->
     <div data-aos="fade-down" data-aos-duration="1000">
       <div class="subtitle">THE WEDDING OF</div>
-      <h1 class="title-names">Tennia Noor Istiqomah <span>&</span> Yudho Utomo</h1>
+      <h1 class="title-names">Nia\n<span>&\n</span> Yudho Utomo</h1>
       <p class="description">Together with our families, we invite you to share in the joy of our wedding celebration.</p>
     </div>
     
@@ -500,13 +620,35 @@
 
         <div class="form-group">
           <label>UCAPAN & DOA (opsional)</label>
-          <textarea id="ucapan" class="form-control" rows="3" placeholder="Tulis ucapan untuk Tennia & Yudho"></textarea>
+          <textarea id="ucapan" class="form-control" rows="3" placeholder="Tulis ucapan untuk Nia & Yudho"></textarea>
         </div>
 
         <button type="submit" class="btn-brown" style="width: 100%; margin-bottom: 0;">
           <i class="fas fa-paper-plane"></i> Kirim Konfirmasi
         </button>
       </form>
+    </div>
+
+    <!-- Amplop Digital Section -->
+    <div data-aos="fade-up" data-aos-duration="1000">
+      <div class="subtitle">AMPLOP DIGITAL</div>
+      <h2 class="section-title">Tanda Kasih</h2>
+      <p class="description">Doa restu Anda merupakan karunia yang sangat berarti bagi kami, dan jika memberi adalah ungkapan tanda kasih, Anda dapat memberi kado secara cashless.</p>
+      <div class="divider"><i class="fas fa-gift float-icon"></i></div>
+    </div>
+
+    <!-- ATM / Bank Card -->
+    <div class="bank-card" data-aos="flip-up" data-aos-duration="1000">
+      <div class="bank-header">
+        <div class="chip"></div>
+        <div class="bank-logo">mandırı</div>
+      </div>
+      <div class="account-number" id="rekening">1350016778290</div>
+      <div class="account-holder">YUDHO UTOMO</div>
+      
+      <button class="btn-copy" onclick="copyRekening()">
+        <i class="far fa-copy"></i> Copy
+      </button>
     </div>
 
     <!-- Quote -->
@@ -521,19 +663,20 @@
       <h2>We can't wait to celebrate with you</h2>
       <p class="description" style="margin-bottom: 0;">Kehadiran dan doa restu Anda adalah kebahagiaan yang tak ternilai bagi kami.<br>Terima kasih atas cinta dan dukungannya.</p>
       <div class="footer-names">
-        Tennia <i class="fas fa-heart pulse-heart"></i> Yudho
+        Nia <i class="fas fa-heart pulse-heart"></i> Yudho
       </div>
     </div>
 
   </div>
 
+  <!-- Toast Notification Copy -->
+  <div id="toast" class="toast">Nomor rekening berhasil disalin!</div>
+
   <!-- AOS JS Script -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    // Inisialisasi Animasi AOS
-    AOS.init({
-      once: true // Animasi jalan 1x saat di-scroll
-    });
+    // Inisialisasi AOS
+    AOS.init({ once: true });
 
     // Countdown Timer
     const targetDate = new Date('October 10, 2026 10:00:00').getTime();
@@ -563,6 +706,18 @@
     setInterval(updateCountdown, 1000);
     updateCountdown();
 
+    // Fungsi Copy Rekening
+    function copyRekening() {
+      const rekText = document.getElementById('rekening').innerText;
+      navigator.clipboard.writeText(rekText).then(() => {
+        const toast = document.getElementById('toast');
+        toast.classList.add('show');
+        setTimeout(() => {
+          toast.classList.remove('show');
+        }, 2500);
+      });
+    }
+
     // RSVP WhatsApp
     function submitRSVP(e) {
       e.preventDefault();
@@ -570,7 +725,7 @@
       const kehadiran = document.querySelector('input[name="kehadiran"]:checked').value;
       const ucapan = document.getElementById('ucapan').value;
       
-      const noWA = "6281234567890"; // Ganti nomor WA di sini
+      const noWA = "6281234567890"; // Ganti nomor WA tujuan di sini
       
       let text = `Halo, saya *${nama}*\n`;
       text += `Konfirmasi Kehadiran: *${kehadiran}*\n`;
