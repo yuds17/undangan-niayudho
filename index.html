@@ -3,25 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Undangan Pernikahan - Yudho & Nia</title>
+  <title>The Wedding of Nia & Yudho</title>
   
-  <!-- Google Fonts -->
+  <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Montserrat:wght@300;400;600&family=Sacramento&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- AOS CSS (Animate On Scroll) -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
   <style>
-    /* --- CSS VARIABLES & SYSTEM TEMA --- */
     :root {
-      --bg-main: #f7f3ed;
-      --bg-card: #fdfbf7;
-      --text-dark: #2b231f;
-      --text-muted: #6e512a;
-      --accent-brown: #826135;
-      --accent-gold: #8c6a3c;
-      --accent-light: #eae0d5;
-      --shadow: 0 10px 30px rgba(43, 35, 31, 0.08);
-      --border-radius: 16px;
+      --bg-color: #fdfbf7;
+      --card-bg: #f8f4ee;
+      --white: #ffffff;
+      --primary-brown: #8c6a3c;
+      --dark-brown: #826135;
+      --text-dark: #3a3227;
+      --text-muted: #857a6e;
+      --border-color: #ece3d8;
     }
 
     * {
@@ -31,246 +33,836 @@
     }
 
     body {
-      font-family: 'Montserrat', sans-serif;
-      background-color: var(--bg-main);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg-color);
       color: var(--text-dark);
       display: flex;
       justify-content: center;
-      min-height: 100vh;
+      padding: 40px 15px;
       line-height: 1.6;
+      overflow-x: hidden;
     }
 
-    /* Container Pembungkus Mobile-first */
     .container {
       width: 100%;
-      max-width: 480px;
-      background-color: var(--bg-card);
-      box-shadow: var(--shadow);
-      min-height: 100vh;
-      padding: 40px 24px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      max-width: 680px;
       text-align: center;
+      margin: 0 auto;
     }
 
-    /* Typography Header */
-    .header-subtitle {
-      font-size: 0.85rem;
+    /* Keyframe Animations */
+    @keyframes heartbeat {
+      0% { transform: scale(1); }
+      14% { transform: scale(1.15); }
+      28% { transform: scale(1); }
+      42% { transform: scale(1.15); }
+      70% { transform: scale(1); }
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-6px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .pulse-heart {
+      display: inline-block;
+      animation: heartbeat 2.5s infinite;
+      color: var(--primary-brown);
+    }
+
+    .float-icon {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    /* Typography */
+    .subtitle {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.75rem;
       letter-spacing: 3px;
       text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 8px;
+      color: var(--primary-brown);
+      margin-bottom: 12px;
+      font-weight: 600;
     }
 
-    .main-title {
-      font-family: 'Cinzel', serif;
+    h1.title-names {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.3rem;
+      color: var(--primary-brown);
+      font-weight: 400;
+      line-height: 1.3;
+      margin-bottom: 20px;
+    }
+
+    h1.title-names span {
+      font-style: italic;
+      font-weight: 300;
+    }
+
+    h2.section-title {
+      font-family: 'Playfair Display', serif;
       font-size: 1.8rem;
-      color: var(--accent-brown);
-      margin-bottom: 32px;
-      letter-spacing: 1px;
+      color: var(--primary-brown);
+      font-weight: 400;
+      margin-bottom: 15px;
     }
 
-    /* Grid Pengantin */
-    .couples-wrapper {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 32px;
-      margin-bottom: 40px;
+    .description {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      max-width: 480px;
+      margin: 0 auto 25px auto;
     }
 
-    .couple-card {
-      background: var(--bg-main);
-      border-radius: var(--border-radius);
-      padding: 24px;
-      border: 1px solid var(--accent-light);
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    /* Pill Tags */
+    .pills-container {
       display: flex;
-      flex-direction: column;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 50px;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      background: var(--white);
+      border: 1px solid var(--border-color);
+      border-radius: 50px;
+      padding: 8px 18px;
+      font-size: 0.8rem;
+      color: var(--primary-brown);
+      font-weight: 500;
+      display: flex;
       align-items: center;
+      gap: 8px;
       transition: transform 0.3s ease;
     }
 
-    .couple-card:hover {
-      transform: translateY(-4px);
+    .pill:hover {
+      transform: translateY(-3px);
     }
 
-    /* Container SVG Vektor */
-    .svg-avatar-container {
-      width: 140px;
-      height: 168px;
-      margin-bottom: 16px;
-      border-radius: 12px;
+    /* Profile / Mempelai Section */
+    .couple-section {
+      margin-bottom: 60px;
+    }
+
+    .couple-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .couple-img-frame {
+      width: 170px;
+      height: 220px;
+      background: var(--white);
+      border-radius: 20px;
+      padding: 10px;
+      box-shadow: 0 10px 25px rgba(140, 106, 60, 0.08);
+      border: 1px solid var(--border-color);
+      margin-bottom: 20px;
       overflow: hidden;
-      box-shadow: 0 6px 12px rgba(130, 97, 53, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .couple-img-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
     }
 
     .couple-name {
-      font-family: 'Sacramento', cursive;
-      font-size: 2.2rem;
-      color: var(--accent-brown);
-      margin-bottom: 4px;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: var(--primary-brown);
+      margin-bottom: 6px;
+      font-weight: 600;
     }
 
-    .fullname {
+    .couple-parents {
+      font-size: 0.82rem;
+      font-style: italic;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      max-width: 320px;
+    }
+
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 50%;
+      color: var(--primary-brown);
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+    }
+
+    .social-btn:hover {
+      background: var(--primary-brown);
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    .ampersand-divider {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-style: italic;
+      color: var(--primary-brown);
+      margin: 15px 0 35px 0;
+    }
+
+    /* Countdown Card */
+    .countdown-card {
+      background-color: var(--card-bg);
+      border-radius: 16px;
+      padding: 30px 20px;
+      margin-bottom: 60px;
+    }
+
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    .time-box {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 15px 5px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+      transition: transform 0.3s ease;
+    }
+
+    .time-box:hover {
+      transform: scale(1.05);
+    }
+
+    .time-box .number {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: var(--primary-brown);
       font-weight: 600;
-      font-size: 0.95rem;
-      color: var(--text-dark);
+      line-height: 1.1;
+    }
+
+    .time-box .label {
+      font-size: 0.65rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 5px;
+    }
+
+    /* Dividers */
+    .divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      margin: 20px 0 35px 0;
+    }
+
+    .divider::before, .divider::after {
+      content: "";
+      height: 1px;
+      width: 60px;
+      background-color: var(--border-color);
+    }
+
+    /* Save the Date Grid */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 25px;
+    }
+
+    @media (max-width: 550px) {
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .info-card {
+      background: var(--white);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 25px 20px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .info-card:hover {
+      box-shadow: 0 8px 20px rgba(140, 106, 60, 0.08);
+      border-color: var(--primary-brown);
+    }
+
+    .info-card i {
+      font-size: 1.2rem;
+      color: var(--primary-brown);
+      margin-bottom: 12px;
+    }
+
+    .info-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--primary-brown);
       margin-bottom: 8px;
     }
 
-    .parent-info {
+    .info-card p {
       font-size: 0.8rem;
       color: var(--text-muted);
-      line-height: 1.4;
+      line-height: 1.5;
     }
 
-    .ampersand {
-      font-family: 'Sacramento', cursive;
-      font-size: 3rem;
-      color: var(--accent-gold);
-      margin: -10px 0;
+    /* Buttons */
+    .btn-brown {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background-color: var(--dark-brown);
+      color: var(--white);
+      border: none;
+      border-radius: 50px;
+      padding: 12px 28px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      width: fit-content;
+      margin: 0 auto 60px auto;
     }
 
-    /* Detail Acara / Tanggal */
-    .event-card {
-      width: 100%;
-      background-color: var(--accent-brown);
-      color: #ffffff;
-      padding: 24px;
-      border-radius: var(--border-radius);
-      margin-bottom: 24px;
+    .btn-brown:hover {
+      background-color: #6e512a;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(130, 97, 53, 0.2);
     }
 
-    .event-card h3 {
-      font-family: 'Cinzel', serif;
-      font-size: 1.2rem;
-      margin-bottom: 12px;
+    /* RSVP Form */
+    .rsvp-card {
+      background: var(--white);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 30px;
+      text-align: left;
+      margin-bottom: 60px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.65rem;
+      font-weight: 700;
       letter-spacing: 1px;
-    }
-
-    .event-card p {
-      font-size: 0.9rem;
-      opacity: 0.9;
-    }
-
-    .footer-note {
-      font-size: 0.8rem;
       color: var(--text-muted);
-      margin-top: 20px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .form-control {
+      width: 100%;
+      background: var(--bg-color);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 12px 15px;
+      font-size: 0.85rem;
+      color: var(--text-dark);
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+
+    .form-control:focus {
+      border-color: var(--primary-brown);
+    }
+
+    .radio-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .radio-btn {
+      position: relative;
+    }
+
+    .radio-btn input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .radio-btn label {
+      display: block;
+      background: var(--bg-color);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 12px;
+      text-align: center;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      cursor: pointer;
+      margin: 0;
+      text-transform: none;
+      letter-spacing: 0;
+      transition: all 0.3s ease;
+    }
+
+    .radio-btn input:checked + label {
+      background: var(--white);
+      border-color: var(--primary-brown);
+      color: var(--primary-brown);
+      box-shadow: 0 0 0 1px var(--primary-brown);
+    }
+
+    /* Amplop Digital / ATM Card Styling */
+    .bank-card {
+      background: linear-gradient(135deg, #ffffff 0%, #f7f3ed 100%);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 25px 25px;
+      text-align: left;
+      position: relative;
+      box-shadow: 0 10px 25px rgba(140, 106, 60, 0.06);
+      margin-top: 25px;
+      margin-bottom: 60px;
+      overflow: hidden;
+    }
+
+    .bank-card::before {
+      content: "";
+      position: absolute;
+      top: -30px;
+      right: -30px;
+      width: 120px;
+      height: 120px;
+      background: rgba(140, 106, 60, 0.04);
+      border-radius: 50%;
+    }
+
+    .bank-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .chip {
+      width: 42px;
+      height: 30px;
+      background: linear-gradient(135deg, #e0c38c 0%, #b89252 100%);
+      border-radius: 6px;
+      position: relative;
+    }
+
+    .chip::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: rgba(0,0,0,0.15);
+    }
+
+    .bank-logo {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #003d79; /* Mandiri Blue Style */
+      letter-spacing: 0.5px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .account-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      letter-spacing: 2px;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .account-holder {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .btn-copy {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      background: var(--white);
+      border: 1px solid var(--border-color);
+      color: var(--primary-brown);
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      transition: all 0.3s ease;
+    }
+
+    .btn-copy:hover {
+      background: var(--primary-brown);
+      color: var(--white);
+      border-color: var(--primary-brown);
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--text-dark);
+      color: var(--white);
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease;
+      z-index: 1000;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* Quote Box */
+    .quote-card {
+      background-color: var(--card-bg);
+      border-radius: 16px;
+      padding: 35px 25px;
+      margin-bottom: 60px;
+    }
+
+    .quote-card p {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--primary-brown);
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    .quote-card .source {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-style: normal;
+      font-size: 0.65rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    /* Footer */
+    .footer-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--primary-brown);
+      margin-bottom: 10px;
+      font-weight: 400;
+    }
+
+    .footer-names {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: var(--primary-brown);
+      margin-top: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
     }
   </style>
 </head>
 <body>
 
   <div class="container">
-    <div class="header-subtitle">Mempelai Pria & Wanita</div>
-    <h1 class="main-title">Mempelai Pernikahan</h1>
+    
+    <!-- Hero Header -->
+    <div data-aos="fade-down" data-aos-duration="1000">
+      <div class="subtitle">THE WEDDING OF</div>
+      <!-- Bagian ini yang diubah dengan tag <br> -->
+      <h1 class="title-names">Nia<br><span>&</span><br>Yudho</h1>
+      <p class="description">Together with our families, we invite you to share in the joy of our wedding celebration.</p>
+    </div>
+    
+    <div class="pills-container" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
+      <div class="pill"><i class="far fa-calendar float-icon"></i> Sabtu, 10 Oktober 2026</div>
+      <div class="pill"><i class="far fa-clock float-icon"></i> 11.00 - 17.00 WIB</div>
+    </div>
 
-    <div class="couples-wrapper">
+    <!-- Mempelai Profile Section -->
+    <div class="couple-section" data-aos="fade-up" data-aos-duration="1000">
+      <p class="description" style="margin-bottom: 30px;">Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i serta kerabat sekalian untuk menghadiri acara pernikahan kami.</p>
+
+      <!-- Mempelai Pria -->
+      <div class="couple-card" data-aos="fade-up" data-aos-duration="1000">
+        <div class="couple-img-frame">
+          <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%; border-radius: 12px; background-color: #f3ece3;">
+            <circle cx="100" cy="100" r="90" fill="#EAE0D5" />
+            <path d="M100 45 C75 45 75 85 100 85 C125 85 125 45 100 45 Z" fill="#DDB892" />
+            <path d="M75 60 C75 42 85 35 100 35 C115 35 125 42 125 60 C120 52 110 50 100 50 C90 50 80 52 75 60 Z" fill="#3A2E2B" />
+            <rect x="92" y="80" width="16" height="20" rx="4" fill="#DDB892" />
+            <path d="M70 100 L100 120 L130 100 L130 180 L70 180 Z" fill="#FFFFFF" />
+            <path d="M50 110 C50 100 70 95 80 100 L95 130 L70 180 L40 180 Z" fill="#8C6A3C" />
+            <path d="M150 110 C150 100 130 95 120 100 L105 130 L130 180 L160 180 Z" fill="#8C6A3C" />
+            <path d="M78 46 C78 36 88 34 100 34 C112 34 122 36 122 46 Z" fill="#2B2B2B" />
+          </svg>
+        </div>
+        <div class="couple-name">Yudho Utomo</div>
+        <div class="couple-parents">Putra dari Bapak Mashadi & Ibu Winarti</div>
+        <!-- <a href="https://instagram.com" target="_blank" class="social-btn"><i class="fab fa-instagram"></i></a> -->
+      </div>
+
+      <div class="ampersand-divider">&</div>
+
+      <!-- Mempelai Wanita -->
+      <div class="couple-card" data-aos="fade-up" data-aos-duration="1000">
+        <div class="couple-img-frame">
+          <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%; border-radius: 12px; background-color: #f3ece3;">
+            <circle cx="100" cy="100" r="90" fill="#EAE0D5" />
+            <ellipse cx="100" cy="72" rx="22" ry="26" fill="#E0C0A8" />
+            <path d="M100 32 C70 32 60 60 60 95 C60 135 75 160 100 160 C125 160 140 135 140 95 C140 60 130 32 100 32 Z" fill="#FAF6F0" />
+            <path d="M82 58 C82 50 90 46 100 46 C110 46 118 50 118 58 Z" fill="#DDB892" />
+            <path d="M78 70 C78 52 88 48 100 48 C112 48 122 52 122 70 C122 88 112 94 100 94 C88 94 78 88 78 70 Z" fill="none" stroke="#FAF6F0" stroke-width="8" />
+            <path d="M55 140 C55 115 75 110 100 110 C125 110 145 115 145 140 L150 180 L50 180 Z" fill="#8C6A3C" />
+            <path d="M90 40 L95 35 L100 38 L105 35 L110 40 Z" fill="#D4AF37" stroke="#B8860B" stroke-width="1" />
+          </svg>
+        </div>
+        <div class="couple-name">Tennia Noor Istiqomah</div>
+        <div class="couple-parents">Putri dari Bapak Jumbadi & Ibu Soeharni</div>
+        <!-- <a href="https://instagram.com" target="_blank" class="social-btn"><i class="fab fa-instagram"></i></a> -->
+      </div>
+    </div>
+
+    <!-- Countdown Box -->
+    <div class="countdown-card" data-aos="zoom-in" data-aos-duration="1000">
+      <div class="subtitle" style="margin-bottom: 0;">COUNTING DOWN TO OUR SPECIAL DAY</div>
+      <div class="countdown-grid">
+        <div class="time-box">
+          <div class="number" id="days">00</div>
+          <div class="label">Days</div>
+        </div>
+        <div class="time-box">
+          <div class="number" id="hours">00</div>
+          <div class="label">Hours</div>
+        </div>
+        <div class="time-box">
+          <div class="number" id="minutes">00</div>
+          <div class="label">Minutes</div>
+        </div>
+        <div class="time-box">
+          <div class="number" id="seconds">00</div>
+          <div class="label">Seconds</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Save The Date -->
+    <div data-aos="fade-up" data-aos-duration="1000">
+      <div class="subtitle">SAVE THE DATE</div>
+      <h2 class="section-title">Akad Nikah & Resepsi</h2>
+      <div class="divider"><i class="fas fa-heart pulse-heart"></i></div>
+    </div>
+
+    <div class="cards-grid">
+      <div class="info-card" data-aos="fade-right" data-aos-duration="1000">
+        <i class="far fa-calendar-alt float-icon"></i>
+        <h3>Tanggal</h3>
+        <p>Sabtu, 10 Oktober 2026<br></p>
+
+        <h3>Akad Nikah</h3>
+         <p>08.00 — Selesai<br></p>
+         <h3>Resepsi</h3>
+         <p>11.00 — 17.00<br></p>
+      </div>
+      <div class="info-card" data-aos="fade-left" data-aos-duration="1000">
+        <i class="fas fa-map-marker-alt float-icon"></i>
+        <h3>Lokasi</h3>
+        <p>Balai Pertemuan Kelurahan Genuksari<br>Jl. Dongbiru No.10, Genuksari, Genuk, Semarang</p>
+      </div>
+    </div>
+
+    <div data-aos="fade-up" data-aos-duration="1000">
+      <a href="https://maps.google.com" target="_blank" class="btn-brown">
+        <i class="fas fa-map-marked-alt"></i> Lihat Peta Lokasi
+      </a>
+    </div>
+
+    <!-- RSVP Section -->
+    <div data-aos="fade-up" data-aos-duration="1000">
+      <div class="subtitle">RSVP</div>
+      <h2 class="section-title">Konfirmasi Kehadiran</h2>
+      <p class="description">Mohon konfirmasi kehadiran Anda beserta jumlah anggota keluarga yang akan hadir.</p>
+      <div class="divider"><i class="fas fa-heart pulse-heart"></i></div>
+    </div>
+
+    <div class="rsvp-card" data-aos="zoom-in-up" data-aos-duration="1000">
+      <form id="rsvpForm" onsubmit="submitRSVP(event)">
+        <div class="form-group">
+          <label>NAMA</label>
+          <input type="text" id="nama" class="form-control" placeholder="Nama lengkap kamu" required>
+        </div>
+
+        <div class="form-group">
+          <label>KONFIRMASI KEHADIRAN</label>
+          <div class="radio-group">
+            <div class="radio-btn">
+              <input type="radio" id="hadir" name="kehadiran" value="Hadir" checked>
+              <label for="hadir">Hadir</label>
+            </div>
+            <div class="radio-btn">
+              <input type="radio" id="tidakHadir" name="kehadiran" value="Tidak Hadir">
+              <label for="tidakHadir">Tidak Hadir</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>UCAPAN & DOA (opsional)</label>
+          <textarea id="ucapan" class="form-control" rows="3" placeholder="Tulis ucapan untuk Nia & Yudho"></textarea>
+        </div>
+
+        <button type="submit" class="btn-brown" style="width: 100%; margin-bottom: 0;">
+          <i class="fas fa-paper-plane"></i> Kirim Konfirmasi
+        </button>
+      </form>
+    </div>
+
+    <!-- Amplop Digital Section -->
+    <div data-aos="fade-up" data-aos-duration="1000">
+      <div class="subtitle">AMPLOP DIGITAL</div>
+      <h2 class="section-title">Tanda Kasih</h2>
+      <p class="description">Doa restu Anda merupakan karunia yang sangat berarti bagi kami, dan jika memberi adalah ungkapan tanda kasih, Anda dapat memberi kado secara cashless.</p>
+      <div class="divider"><i class="fas fa-gift float-icon"></i></div>
+    </div>
+
+    <!-- ATM / Bank Card -->
+    <div class="bank-card" data-aos="flip-up" data-aos-duration="1000">
+      <div class="bank-header">
+        <div class="chip"></div>
+        <div class="bank-logo">mandırı</div>
+      </div>
+      <div class="account-number" id="rekening">1350016778290</div>
+      <div class="account-holder">YUDHO UTOMO</div>
       
-      <!-- ================= MEMPELAI PRIA ================= -->
-      <div class="couple-card">
-        <div class="svg-avatar-container">
-          <!-- SVG Vektor Mempelai Pria -->
-          <svg viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%; background: linear-gradient(180deg, #f7f3ed 0%, #eae0d5 100%);">
-            <!-- Glow Latar Belakang -->
-            <circle cx="100" cy="80" r="55" fill="#fdfbf7" opacity="0.6"/>
-            <!-- Leher -->
-            <path d="M91 100 H109 V122 H91 Z" fill="#e0c0a8"/>
-            <!-- Wajah -->
-            <path d="M78 68 C78 50, 122 50, 122 68 C122 96, 114 112, 100 112 C86 112, 78 96, 78 68 Z" fill="#e8cbba"/>
-            <!-- Telinga -->
-            <ellipse cx="77" cy="74" rx="4" ry="7" fill="#dfbfa7"/>
-            <ellipse cx="123" cy="74" rx="4" ry="7" fill="#dfbfa7"/>
-            <!-- Rambut -->
-            <path d="M76 68 C74 52, 85 38, 100 38 C115 38, 126 52, 124 68 C122 56, 114 48, 100 48 C86 48, 78 56, 76 68 Z" fill="#2b231f"/>
-            <!-- Peci Hitam -->
-            <path d="M74 56 C74 42, 85 40, 100 40 C115 40, 126 42, 126 56 C126 60, 74 60, 74 56 Z" fill="#1f1a17"/>
-            <path d="M75 57 C85 55, 115 55, 125 57" stroke="#3a3227" stroke-width="1"/>
-            <!-- Alis -->
-            <path d="M84 68 Q91 66 96 69 M104 69 Q109 66 116 68" stroke="#5a4d41" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-            <!-- Kemeja Putih Inner -->
-            <path d="M85 118 L100 135 L115 118 L125 140 H75 Z" fill="#ffffff"/>
-            <!-- Dasi -->
-            <path d="M97 122 L100 148 L103 122 Z" fill="#8c6a3c"/>
-            <!-- Jas Beskap Brown -->
-            <path d="M52 145 C52 125, 75 118, 88 120 L100 142 L112 120 C125 118, 148 125, 148 145 L155 240 H45 Z" fill="#826135"/>
-            <path d="M88 120 L100 155 L70 240 H45 L52 145 C52 125, 75 118, 88 120 Z" fill="#6e512a"/>
-            <!-- Saku Jas & Bunga -->
-            <path d="M120 160 H138 V163 H120 Z" fill="#583f1f"/>
-            <circle cx="129" cy="154" r="4" fill="#ffffff"/>
-            <path d="M129 158 Q132 153 134 150" stroke="#a3b18a" stroke-width="1.5" fill="none"/>
-          </svg>
-        </div>
-        <div class="couple-name">Yudho</div>
-        <div class="fullname">Yudho Utomo</div>
-        <div class="parent-info">
-          Putra dari Bapak Nama Ayah<br>& Ibu Nama Ibu
-        </div>
+      <button class="btn-copy" onclick="copyRekening()">
+        <i class="far fa-copy"></i> Copy
+      </button>
+    </div>
+
+    <!-- Quote -->
+    <div class="quote-card" data-aos="fade-up" data-aos-duration="1000">
+      <i class="fas fa-heart pulse-heart" style="font-size: 0.9rem; margin-bottom: 15px;"></i>
+      <p>“And of His signs is that He created for you from yourselves mates that you may find tranquility in them; and He placed between you affection and mercy.”</p>
+      <div class="source">— QS. AR-RUM: 21</div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer-section" data-aos="fade-up" data-aos-duration="1000">
+      <h2>We can't wait to celebrate with you</h2>
+      <p class="description" style="margin-bottom: 0;">Kehadiran dan doa restu Anda adalah kebahagiaan yang tak ternilai bagi kami.<br>Terima kasih atas cinta dan dukungannya.</p>
+      <div class="footer-names">
+        Nia <i class="fas fa-heart pulse-heart"></i> Yudho
       </div>
-
-      <!-- SIMBOL DAN (&) -->
-      <div class="ampersand">&</div>
-
-      <!-- ================= MEMPELAI WANITA ================= -->
-      <div class="couple-card">
-        <div class="svg-avatar-container">
-          <!-- SVG Vektor Mempelai Wanita -->
-          <svg viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%; background: linear-gradient(180deg, #f7f3ed 0%, #eae0d5 100%);">
-            <!-- Glow Latar Belakang -->
-            <circle cx="100" cy="80" r="55" fill="#fdfbf7" opacity="0.6"/>
-            <!-- Hijab Drape Belakang -->
-            <path d="M55 90 C50 140, 65 210, 100 210 C135 210, 150 140, 145 90 C140 50, 125 35, 100 35 C75 35, 60 50, 55 90 Z" fill="#f8f4ee"/>
-            <!-- Leher Hijab Inner -->
-            <path d="M88 100 C88 115, 112 115, 112 100 Z" fill="#e0c0a8"/>
-            <!-- Wajah -->
-            <path d="M80 68 C80 52, 120 52, 120 68 C120 94, 112 108, 100 108 C88 108, 80 94, 80 68 Z" fill="#e8cbba"/>
-            <!-- Ciput Hijab -->
-            <path d="M81 60 C85 52, 115 52, 119 60 C115 55, 85 55, 81 60 Z" fill="#8c6a3c"/>
-            <!-- Hijab Depan Layering -->
-            <path d="M68 70 C60 100, 75 145, 100 148 C125 145, 140 100, 132 70 C125 45, 75 45, 68 70 Z" fill="#fdfbf7" opacity="0.9"/>
-            <!-- Mahkota / Tiara Emas -->
-            <path d="M84 49 L90 38 L96 46 L100 34 L104 46 L110 38 L116 49 Z" fill="#e0c38c" stroke="#b89252" stroke-width="1"/>
-            <circle cx="100" cy="34" r="2" fill="#ffffff"/>
-            <circle cx="90" cy="38" r="1.5" fill="#ffffff"/>
-            <circle cx="110" cy="38" r="1.5" fill="#ffffff"/>
-            <!-- Alis -->
-            <path d="M85 68 Q91 65 95 68 M105 68 Q109 65 115 68" stroke="#5a4d41" stroke-width="2" stroke-linecap="round" fill="none"/>
-            <!-- Gaun / Kebaya Pengantin -->
-            <path d="M45 155 C50 130, 75 125, 100 135 C125 125, 150 130, 155 155 L165 240 H35 Z" fill="#f8f4ee"/>
-            <path d="M75 140 C85 155, 115 155, 125 140 L135 240 H65 Z" fill="#ece3d8"/>
-            <!-- Buket Bunga (Bouquet) -->
-            <g transform="translate(100, 175)">
-              <path d="M-15 -5 Q-5 -15 0 0 Q5 -15 15 -5 Q20 10 0 12 Q-20 10 -15 -5 Z" fill="#a3b18a"/>
-              <circle cx="-6" cy="-4" r="6" fill="#ffffff"/>
-              <circle cx="6" cy="-4" r="6" fill="#ffffff"/>
-              <circle cx="0" cy="-8" r="7" fill="#dfbfa7"/>
-              <circle cx="0" cy="0" r="5" fill="#8c6a3c"/>
-            </g>
-          </svg>
-        </div>
-        <div class="couple-name">Nia</div>
-        <div class="fullname">Tennia S.</div>
-        <div class="parent-info">
-          Putri dari Bapak Nama Ayah<br>& Ibu Nama Ibu
-        </div>
-      </div>
-
     </div>
 
-    <!-- DETAIL TANGGAL ACARA -->
-    <div class="event-card">
-      <h3>Akad & Resepsi</h3>
-      <p>Sabtu, 12 Desember 2026</p>
-      <p>Pukul 09.00 WIB - Selesai</p>
-    </div>
-
-    <div class="footer-note">
-      Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu.
-    </div>
   </div>
 
+  <!-- Toast Notification Copy -->
+  <div id="toast" class="toast">Nomor rekening berhasil disalin!</div>
+
+  <!-- AOS JS Script -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    // Inisialisasi AOS
+    AOS.init({ once: true });
+
+    // Countdown Timer
+    const targetDate = new Date('October 10, 2026 10:00:00').getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const difference = targetDate - now;
+
+      if (difference > 0) {
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+        document.getElementById('days').innerText = days < 10 ? '0' + days : days;
+        document.getElementById('hours').innerText = hours < 10 ? '0' + hours : hours;
+        document.getElementById('minutes').innerText = minutes < 10 ? '0' + minutes : minutes;
+        document.getElementById('seconds').innerText = seconds < 10 ? '0' + seconds : seconds;
+      } else {
+        document.getElementById('days').innerText = '00';
+        document.getElementById('hours').innerText = '00';
+        document.getElementById('minutes').innerText = '00';
+        document.getElementById('seconds').innerText = '00';
+      }
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // Fungsi Copy Rekening
+    function copyRekening() {
+      const rekText = document.getElementById('rekening').innerText;
+      navigator.clipboard.writeText(rekText).then(() => {
+        const toast = document.getElementById('toast');
+        toast.classList.add('show');
+        setTimeout(() => {
+          toast.classList.remove('show');
+        }, 2500);
+      });
+    }
+
+    // RSVP WhatsApp
+    function submitRSVP(e) {
+      e.preventDefault();
+      const nama = document.getElementById('nama').value;
+      const kehadiran = document.querySelector('input[name="kehadiran"]:checked').value;
+      const ucapan = document.getElementById('ucapan').value;
+      
+      const noWA = "6281234567890"; // Ganti nomor WA tujuan di sini
+      
+      let text = `Halo, saya *${nama}*\n`;
+      text += `Konfirmasi Kehadiran: *${kehadiran}*\n`;
+      if(ucapan) text += `Ucapan & Doa: _"${ucapan}"_`;
+
+      const encodedText = encodeURIComponent(text);
+      window.open(`https://wa.me/${noWA}?text=${encodedText}`, '_blank');
+    }
+  </script>
 </body>
 </html>
