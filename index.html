@@ -46,10 +46,141 @@
       overflow-x: hidden;
     }
 
+    /* Prevent scrolling when envelope cover is active */
+    body.no-scroll {
+      overflow: hidden;
+      height: 100vh;
+    }
+
+    /* --- OVERLAY ENVELOPE / AMPLOP --- */
+    .envelope-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background-color: #f3ece3;
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: opacity 1s ease, visibility 1s ease;
+    }
+
+    .envelope-overlay.hide-envelope {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .envelope-wrapper {
+      position: relative;
+      width: 320px;
+      height: 480px;
+      background: #fdfbf7;
+      border-radius: 12px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 40px 20px;
+      perspective: 1000px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+    }
+
+    /* Flap Top (Penutup Amplop atas) */
+    .envelope-flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-left: 160px solid transparent;
+      border-right: 160px solid transparent;
+      border-top: 150px solid #e2d5c3;
+      transform-origin: top;
+      transition: transform 0.8s ease-in-out;
+      z-index: 5;
+    }
+
+    /* Kertas Dalam Amplop */
+    .envelope-card {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      margin-top: 80px;
+    }
+
+    .envelope-title {
+      font-family: 'Cinzel', serif;
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      color: var(--primary-brown);
+      margin-bottom: 10px;
+    }
+
+    .envelope-names {
+      font-family: 'Tangerine', cursive;
+      font-size: 3.2rem;
+      color: var(--primary-brown);
+      line-height: 1;
+      margin-bottom: 15px;
+    }
+
+    .envelope-guest {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 15px;
+    }
+
+    .envelope-guest-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--primary-brown);
+      margin-top: 5px;
+    }
+
+    /* Wax Seal Button (Tombol Buka) */
+    .open-btn {
+      position: relative;
+      z-index: 6;
+      background-color: var(--dark-brown);
+      color: var(--white);
+      border: none;
+      padding: 12px 28px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(130, 97, 53, 0.3);
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .open-btn:hover {
+      background-color: #6e512a;
+      transform: scale(1.05);
+    }
+
+    /* Animasi Buka Amplop */
+    .envelope-wrapper.open .envelope-flap {
+      transform: rotateX(180deg);
+      z-index: 1;
+    }
+
+    /* --- END OVERLAY ENVELOPE --- */
+
     .font-tangerine {
       font-family: 'Tangerine', cursive;
       font-size: 3.6rem;
       color: var(--primary-brown);
+      line-height: 1;
+      margin-bottom: -5px;
     }
 
     .container {
@@ -156,7 +287,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-bottom: 20px; /* Diubah dari 30px agar lebih rapat ke elemen berikutnya */
+      margin-bottom: 20px;
     }
 
     .couple-img-frame {
@@ -167,26 +298,18 @@
       padding: 10px;
       box-shadow: 0 10px 25px rgba(140, 106, 60, 0.08);
       border: 1px solid var(--border-color);
-      margin-bottom: 8px; /* Diubah dari 20px agar rapat ke tulisan 'Yudho' */
+      margin-bottom: 8px;
       overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
-    .font-tangerine {
-      font-family: 'Tangerine', cursive;
-      font-size: 3.6rem;
-      color: var(--primary-brown);
-      line-height: 1; /* Ditambahkan agar font cursive tidak menyisa jarak vertikal besar */
-      margin-bottom: -5px; /* Mengurangi sisa spasi bawah dari font Tangerine */
-    }
-
     .couple-name {
       font-family: 'Playfair Display', serif;
       font-size: 1.2rem;
       color: var(--primary-brown);
-      margin-bottom: 4px; /* Diubah dari 6px */
+      margin-bottom: 4px;
       font-weight: 600;
     }
 
@@ -194,7 +317,7 @@
       font-size: 0.82rem;
       font-style: italic;
       color: var(--text-muted);
-      margin-bottom: 0; /* Diubah dari 12px agar tidak mendorong elemen di bawahnya */
+      margin-bottom: 0;
       max-width: 320px;
     }
 
@@ -203,7 +326,7 @@
       font-size: 2rem;
       font-style: italic;
       color: var(--primary-brown);
-      margin: 10px 0 20px 0; /* Diubah dari '15px 0 35px 0' agar simbol '&' lebih rapat */
+      margin: 10px 0 20px 0;
     }
 
     .countdown-card {
@@ -692,7 +815,25 @@
     }
   </style>
 </head>
-<body>
+<body class="no-scroll">
+
+  <!-- OVERLAY AMPLOP DENGAN ANIMASI BUKA -->
+  <div class="envelope-overlay" id="envelopeOverlay">
+    <div class="envelope-wrapper" id="envelopeWrapper">
+      <div class="envelope-flap"></div>
+      
+      <div class="envelope-card">
+        <div class="envelope-title">WEDDING INVITATION</div>
+        <div class="envelope-names">Nia & Yudho</div>
+        <div class="envelope-guest">Kepada Yth.<br>Bapak/Ibu/Saudara/i:</div>
+        <div class="envelope-guest-name">Tamu Undangan</div>
+      </div>
+
+      <button class="open-btn" onclick="openEnvelope()">
+        <i class="fas fa-envelope-open"></i> Buka Undangan
+      </button>
+    </div>
+  </div>
 
   <div class="container">
     
@@ -846,11 +987,6 @@
       </form>
     </div>
 
-    <!-- Container Daftar Ucapan -->
-   <!--  <div class="wishes-container" id="wishesList" data-aos="fade-up" data-aos-duration="1000">
-      <div style="text-align: center; color: var(--text-muted); font-size: 0.8rem;">Memuat pesan tamu...</div>
-    </div> -->
-
     <!-- Amplop Digital Section -->
     <div data-aos="fade-up" data-aos-duration="1000">
       <div class="subtitle">AMPLOP DIGITAL</div>
@@ -884,14 +1020,10 @@
     <div class="footer-section" data-aos="fade-up" data-aos-duration="1000">
       <h2>We can't wait to celebrate with you</h2>
       <p class="description" style="margin-bottom: 0;">Kehadiran dan doa restu Anda adalah kebahagiaan yang tak ternilai bagi kami.<br>Terima kasih.</p>
-    <!--   <div class="footer-names">
-        Nia <i class="fas fa-heart pulse-heart"></i> Yudho
-      </div> -->
 
-<div class="footer-names">
+      <div class="footer-names">
         Nia & Yudho
       </div>
-      
     </div>
 
   </div>
@@ -912,10 +1044,25 @@
   <!-- AOS JS Script -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    // URL Google Apps Script dari Langkah 1
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwkAcRQjHakVH19pbtoXiaGjKU_uVZKrvCbOSUz8WNcjFsd0548tU3wXo-OwVvtaag/exec";
 
-    AOS.init({ once: true });
+    // Fungsi Animasi Buka Amplop
+    function openEnvelope() {
+      const wrapper = document.getElementById('envelopeWrapper');
+      const overlay = document.getElementById('envelopeOverlay');
+      
+      // 1. Putar flap amplop ke atas
+      wrapper.classList.add('open');
+      
+      // 2. Setelah animasi flap selesai, pudarkan overlay sampul
+      setTimeout(() => {
+        overlay.classList.add('hide-envelope');
+        document.body.classList.remove('no-scroll');
+        
+        // Inisialisasi AOS Animation setelah amplop dibuka
+        AOS.init({ once: true });
+      }, 700);
+    }
 
     // Countdown Timer
     const targetDate = new Date('October 10, 2026 10:00:00').getTime();
@@ -992,7 +1139,6 @@
         submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Kirim Konfirmasi';
         document.getElementById('rsvpForm').reset();
         showModal();
-        loadWishes(); // Refresh list ucapan
       })
       .catch(error => {
         console.error('Error:', error);
@@ -1001,55 +1147,6 @@
         submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Kirim Konfirmasi';
       });
     }
-
-    // Ambil & Tampilkan Data Ucapan Tamu
-    function loadWishes() {
-      const wishesList = document.getElementById('wishesList');
-      
-      fetch(SCRIPT_URL)
-        .then(response => response.json())
-        .then(data => {
-          if (!data || data.length === 0) {
-            wishesList.innerHTML = '<div style="text-align: center; color: var(--text-muted); font-size: 0.8rem;">Belum ada ucapan. Jadilah yang pertama!</div>';
-            return;
-          }
-
-          let html = '';
-          // Urutkan dari yang paling baru
-          data.reverse().forEach(item => {
-            const isHadir = item.kehadiran === 'Hadir';
-            const statusClass = isHadir ? 'status-hadir' : 'status-tidak';
-            
-            html += `
-              <div class="wish-item">
-                <div class="wish-header">
-                  <span class="wish-name">${escapeHtml(item.nama)}</span>
-                  <span class="wish-status ${statusClass}">${escapeHtml(item.kehadiran)}</span>
-                </div>
-                <div class="wish-text">${escapeHtml(item.ucapan)}</div>
-              </div>
-            `;
-          });
-          wishesList.innerHTML = html;
-        })
-        .catch(() => {
-          wishesList.innerHTML = '<div style="text-align: center; color: var(--text-muted); font-size: 0.8rem;">Gagal memuat ucapan tamu.</div>';
-        });
-    }
-
-    // Keamanan Sanitasi HTML (XSS prevention)
-    function escapeHtml(text) {
-      if (!text) return '';
-      return text
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-    }
-
-    // Load data saat halaman pertama terbuka
-    document.addEventListener('DOMContentLoaded', loadWishes);
   </script>
 </body>
 </html>
