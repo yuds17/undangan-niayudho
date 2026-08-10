@@ -53,17 +53,19 @@
     }
 
     /* --- OVERLAY ENVELOPE / AMPLOP --- */
+    /* --- OVERLAY ENVELOPE / AMPLOP (RESPONSIF & PRESISI DI TENGAH) --- */
     .envelope-overlay {
       position: fixed;
       top: 0;
       left: 0;
-      width: 100%;
+      width: 100vw;
       height: 100vh;
       background-color: #f3ece3;
       z-index: 9999;
       display: flex;
       justify-content: center;
       align-items: center;
+      padding: 20px; /* Jarak aman untuk layar HP kecil */
       transition: opacity 1s ease, visibility 1s ease;
     }
 
@@ -75,7 +77,8 @@
 
     .envelope-wrapper {
       position: relative;
-      width: 320px;
+      width: 100%;
+      max-width: 320px; /* Menggunakan max-width agar responsif di HP kecil */
       height: 480px;
       background: #fdfbf7;
       border-radius: 12px;
@@ -88,18 +91,19 @@
       perspective: 1000px;
       overflow: hidden;
       border: 1px solid var(--border-color);
+      margin: 0 auto;
     }
 
-    /* Flap Top (Penutup Amplop atas) */
+    /* Flap Top (Penutup Amplop dengan Clip-Path agar Presisi) */
     .envelope-flap {
       position: absolute;
       top: 0;
       left: 0;
-      width: 0;
-      height: 0;
-      border-left: 160px solid transparent;
-      border-right: 160px solid transparent;
-      border-top: 150px solid #e2d5c3;
+      width: 100%;
+      height: 150px;
+      background-color: #e2d5c3;
+      /* Menggunakan clip-path menggantikan border-triangle agar selalu pas 100% lebar kartu */
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
       transform-origin: top;
       transition: transform 0.8s ease-in-out;
       z-index: 5;
