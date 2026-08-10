@@ -156,7 +156,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-bottom: 30px;
+      margin-bottom: 20px; /* Diubah dari 30px agar lebih rapat ke elemen berikutnya */
     }
 
     .couple-img-frame {
@@ -167,18 +167,26 @@
       padding: 10px;
       box-shadow: 0 10px 25px rgba(140, 106, 60, 0.08);
       border: 1px solid var(--border-color);
-      margin-bottom: 20px;
+      margin-bottom: 8px; /* Diubah dari 20px agar rapat ke tulisan 'Yudho' */
       overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
+    .font-tangerine {
+      font-family: 'Tangerine', cursive;
+      font-size: 3.6rem;
+      color: var(--primary-brown);
+      line-height: 1; /* Ditambahkan agar font cursive tidak menyisa jarak vertikal besar */
+      margin-bottom: -5px; /* Mengurangi sisa spasi bawah dari font Tangerine */
+    }
+
     .couple-name {
       font-family: 'Playfair Display', serif;
       font-size: 1.2rem;
       color: var(--primary-brown);
-      margin-bottom: 6px;
+      margin-bottom: 4px; /* Diubah dari 6px */
       font-weight: 600;
     }
 
@@ -186,7 +194,7 @@
       font-size: 0.82rem;
       font-style: italic;
       color: var(--text-muted);
-      margin-bottom: 12px;
+      margin-bottom: 0; /* Diubah dari 12px agar tidak mendorong elemen di bawahnya */
       max-width: 320px;
     }
 
@@ -195,7 +203,7 @@
       font-size: 2rem;
       font-style: italic;
       color: var(--primary-brown);
-      margin: 15px 0 35px 0;
+      margin: 10px 0 20px 0; /* Diubah dari '15px 0 35px 0' agar simbol '&' lebih rapat */
     }
 
     .countdown-card {
