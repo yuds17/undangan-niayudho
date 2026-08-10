@@ -8,13 +8,13 @@
   <!-- FAVICON EMOJI CINCIN -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💍</text></svg>">
   
-  <!-- Fonts & Icons (Google Font Tangerine ditambahkan di sini) -->
+  <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <!-- AOS CSS (Animate On Scroll) -->
+  <!-- AOS CSS -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
   <style>
@@ -46,10 +46,9 @@
       overflow-x: hidden;
     }
 
-    /* Class Tambahan untuk Font Tangerine */
     .font-tangerine {
       font-family: 'Tangerine', cursive;
-       font-size: 1.6rem;
+      font-size: 1.6rem;
       color: var(--primary-brown);
       margin-bottom: 6px;
       font-weight: 600;
@@ -62,7 +61,6 @@
       margin: 0 auto;
     }
 
-    /* Keyframe Animations */
     @keyframes heartbeat {
       0% { transform: scale(1); }
       14% { transform: scale(1.15); }
@@ -87,7 +85,6 @@
       animation: float 3s ease-in-out infinite;
     }
 
-    /* Typography */
     .subtitle {
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 0.75rem;
@@ -127,7 +124,6 @@
       margin: 0 auto 25px auto;
     }
 
-    /* Pill Tags */
     .pills-container {
       display: flex;
       justify-content: center;
@@ -154,7 +150,6 @@
       transform: translateY(-3px);
     }
 
-    /* Profile / Mempelai Section */
     .couple-section {
       margin-bottom: 60px;
     }
@@ -181,13 +176,6 @@
       justify-content: center;
     }
 
-    .couple-img-frame img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 12px;
-    }
-
     .couple-name {
       font-family: 'Playfair Display', serif;
       font-size: 1.2rem;
@@ -204,27 +192,6 @@
       max-width: 320px;
     }
 
-    .social-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 38px;
-      height: 38px;
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 50%;
-      color: var(--primary-brown);
-      text-decoration: none;
-      font-size: 1.1rem;
-      transition: all 0.3s ease;
-    }
-
-    .social-btn:hover {
-      background: var(--primary-brown);
-      color: var(--white);
-      transform: translateY(-2px);
-    }
-
     .ampersand-divider {
       font-family: 'Playfair Display', serif;
       font-size: 2rem;
@@ -233,7 +200,6 @@
       margin: 15px 0 35px 0;
     }
 
-    /* Countdown Card */
     .countdown-card {
       background-color: var(--card-bg);
       border-radius: 16px;
@@ -276,7 +242,6 @@
       margin-top: 5px;
     }
 
-    /* Dividers */
     .divider {
       display: flex;
       align-items: center;
@@ -292,7 +257,6 @@
       background-color: var(--border-color);
     }
 
-    /* Save the Date Grid */
     .cards-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -339,7 +303,6 @@
       line-height: 1.5;
     }
 
-    /* Buttons */
     .btn-brown {
       display: inline-flex;
       align-items: center;
@@ -365,14 +328,13 @@
       box-shadow: 0 5px 15px rgba(130, 97, 53, 0.2);
     }
 
-    /* RSVP Form */
     .rsvp-card {
       background: var(--white);
       border: 1px solid var(--border-color);
       border-radius: 16px;
       padding: 30px;
       text-align: left;
-      margin-bottom: 60px;
+      margin-bottom: 30px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.02);
     }
 
@@ -435,8 +397,6 @@
       color: var(--text-dark);
       cursor: pointer;
       margin: 0;
-      text-transform: none;
-      letter-spacing: 0;
       transition: all 0.3s ease;
     }
 
@@ -447,7 +407,63 @@
       box-shadow: 0 0 0 1px var(--primary-brown);
     }
 
-    /* Amplop Digital / ATM Card Styling */
+    /* List Ucapan Tamu */
+    .wishes-container {
+      background: var(--white);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 60px;
+      max-height: 350px;
+      overflow-y: auto;
+      text-align: left;
+    }
+
+    .wish-item {
+      border-bottom: 1px solid var(--border-color);
+      padding: 12px 0;
+    }
+
+    .wish-item:last-child {
+      border-bottom: none;
+    }
+
+    .wish-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 5px;
+    }
+
+    .wish-name {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--primary-brown);
+    }
+
+    .wish-status {
+      font-size: 0.7rem;
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-weight: 500;
+    }
+
+    .status-hadir {
+      background: #e6f4ea;
+      color: #137333;
+    }
+
+    .status-tidak {
+      background: #fce8e6;
+      color: #c5221f;
+    }
+
+    .wish-text {
+      font-size: 0.82rem;
+      color: var(--text-dark);
+    }
+
+    /* ATM Card */
     .bank-card {
       background: linear-gradient(135deg, #ffffff 0%, #f7f3ed 100%);
       border: 1px solid var(--border-color);
@@ -502,7 +518,6 @@
       font-size: 1.1rem;
       color: #003d79;
       letter-spacing: 0.5px;
-      font-family: 'Plus Jakarta Sans', sans-serif;
     }
 
     .account-number {
@@ -547,6 +562,64 @@
       border-color: var(--primary-brown);
     }
 
+    /* Modal Popup Terima Kasih */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 2000;
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-box {
+      background: var(--white);
+      padding: 35px 25px;
+      border-radius: 20px;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      transform: translateY(20px);
+      transition: all 0.3s ease;
+    }
+
+    .modal-overlay.active .modal-box {
+      transform: translateY(0);
+    }
+
+    .modal-icon {
+      font-size: 3rem;
+      color: var(--primary-brown);
+      margin-bottom: 15px;
+    }
+
+    .modal-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--primary-brown);
+      margin-bottom: 10px;
+    }
+
+    .modal-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
     /* Toast Notification */
     .toast {
       position: fixed;
@@ -567,7 +640,6 @@
       transform: translateX(-50%) translateY(0);
     }
 
-    /* Quote Box */
     .quote-card {
       background-color: var(--card-bg);
       border-radius: 16px;
@@ -594,7 +666,6 @@
       font-weight: 600;
     }
 
-    /* Footer */
     .footer-section h2 {
       font-family: 'Playfair Display', serif;
       font-size: 1.5rem;
@@ -649,9 +720,8 @@
             <path d="M78 46 C78 36 88 34 100 34 C112 34 122 36 122 46 Z" fill="#2B2B2B" />
           </svg>
         </div>
-        <!-- Ditambahkan class font-tangerine opsional jika ingin mengubah font nama -->
-        <div class="couple-name">Yudho</div>
-        <div class="fullname">Yudho Utomo</div>
+        <div class="font-tangerine">Yudho</div>
+        <div class="couple-name">Yudho Utomo</div>
         <div class="couple-parents">Putra dari Bapak Mashadi & Ibu Winarti</div>
       </div>
 
@@ -670,8 +740,8 @@
             <path d="M90 40 L95 35 L100 38 L105 35 L110 40 Z" fill="#D4AF37" stroke="#B8860B" stroke-width="1" />
           </svg>
         </div>
-        <div class="couple-name">Nia</div>
-        <div class="fullname">Tennia Noor Istiqomah</div>
+        <div class="font-tangerine">Nia</div>
+        <div class="couple-name">Tennia Noor Istiqomah</div>
         <div class="couple-parents">Putri dari Bapak Jumbadi & Ibu Soeharni</div>
       </div>
     </div>
@@ -734,7 +804,7 @@
     <div data-aos="fade-up" data-aos-duration="1000">
       <div class="subtitle">RSVP</div>
       <h2 class="section-title">Konfirmasi Kehadiran</h2>
-      <p class="description">Mohon konfirmasi kehadiran Anda beserta jumlah anggota keluarga yang akan hadir.</p>
+      <p class="description">Mohon konfirmasi kehadiran Anda beserta ucapan doa untuk kami.</p>
       <div class="divider"><i class="fas fa-heart pulse-heart"></i></div>
     </div>
 
@@ -764,10 +834,15 @@
           <textarea id="ucapan" class="form-control" rows="3" placeholder="Tulis ucapan untuk Nia & Yudho"></textarea>
         </div>
 
-        <button type="submit" class="btn-brown" style="width: 100%; margin-bottom: 0;">
+        <button type="submit" id="submitBtn" class="btn-brown" style="width: 100%; margin-bottom: 0;">
           <i class="fas fa-paper-plane"></i> Kirim Konfirmasi
         </button>
       </form>
+    </div>
+
+    <!-- Container Daftar Ucapan -->
+    <div class="wishes-container" id="wishesList" data-aos="fade-up" data-aos-duration="1000">
+      <div style="text-align: center; color: var(--text-muted); font-size: 0.8rem;">Memuat pesan tamu...</div>
     </div>
 
     <!-- Amplop Digital Section -->
@@ -810,13 +885,25 @@
 
   </div>
 
+  <!-- Modal Popup Terima Kasih -->
+  <div id="thankYouModal" class="modal-overlay">
+    <div class="modal-box">
+      <div class="modal-icon"><i class="fas fa-heart"></i></div>
+      <h3 class="modal-title">Terima Kasih!</h3>
+      <p class="modal-desc">Konfirmasi kehadiran dan ucapan Anda telah berhasil tersimpan.</p>
+      <button class="btn-brown" onclick="closeModal()" style="margin-bottom: 0;">Tutup</button>
+    </div>
+  </div>
+
   <!-- Toast Notification Copy -->
   <div id="toast" class="toast">Nomor rekening berhasil disalin!</div>
 
   <!-- AOS JS Script -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    // Inisialisasi AOS
+    // URL Google Apps Script dari Langkah 1
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwkAcRQjHakVH19pbtoXiaGjKU_uVZKrvCbOSUz8WNcjFsd0548tU3wXo-OwVvtaag/exec";
+
     AOS.init({ once: true });
 
     // Countdown Timer
@@ -847,7 +934,6 @@
     setInterval(updateCountdown, 1000);
     updateCountdown();
 
-    // Fungsi Copy Rekening
     function copyRekening() {
       const rekText = document.getElementById('rekening').innerText;
       navigator.clipboard.writeText(rekText).then(() => {
@@ -859,22 +945,100 @@
       });
     }
 
-    // RSVP WhatsApp
+    // Modal Control
+    function showModal() {
+      document.getElementById('thankYouModal').classList.add('active');
+    }
+
+    function closeModal() {
+      document.getElementById('thankYouModal').classList.remove('active');
+    }
+
+    // Submit RSVP ke Database (Google Sheets)
     function submitRSVP(e) {
       e.preventDefault();
-      const nama = document.getElementById('nama').value;
-      const kehadiran = document.querySelector('input[name="kehadiran"]:checked').value;
-      const ucapan = document.getElementById('ucapan').value;
       
-      const noWA = "6281234567890"; // Ganti nomor WA tujuan di sini
-      
-      let text = `Halo, saya *${nama}*\n`;
-      text += `Konfirmasi Kehadiran: *${kehadiran}*\n`;
-      if(ucapan) text += `Ucapan & Doa: _"${ucapan}"_`;
+      const submitBtn = document.getElementById('submitBtn');
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
 
-      const encodedText = encodeURIComponent(text);
-      window.open(`https://wa.me/${noWA}?text=${encodedText}`, '_blank');
+      const data = {
+        nama: document.getElementById('nama').value,
+        kehadiran: document.querySelector('input[name="kehadiran"]:checked').value,
+        ucapan: document.getElementById('ucapan').value || "-"
+      };
+
+      fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+      .then(() => {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Kirim Konfirmasi';
+        document.getElementById('rsvpForm').reset();
+        showModal();
+        loadWishes(); // Refresh list ucapan
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('Terjadi kesalahan saat menyimpan data.');
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Kirim Konfirmasi';
+      });
     }
+
+    // Ambil & Tampilkan Data Ucapan Tamu
+    function loadWishes() {
+      const wishesList = document.getElementById('wishesList');
+      
+      fetch(SCRIPT_URL)
+        .then(response => response.json())
+        .then(data => {
+          if (!data || data.length === 0) {
+            wishesList.innerHTML = '<div style="text-align: center; color: var(--text-muted); font-size: 0.8rem;">Belum ada ucapan. Jadilah yang pertama!</div>';
+            return;
+          }
+
+          let html = '';
+          // Urutkan dari yang paling baru
+          data.reverse().forEach(item => {
+            const isHadir = item.kehadiran === 'Hadir';
+            const statusClass = isHadir ? 'status-hadir' : 'status-tidak';
+            
+            html += `
+              <div class="wish-item">
+                <div class="wish-header">
+                  <span class="wish-name">${escapeHtml(item.nama)}</span>
+                  <span class="wish-status ${statusClass}">${escapeHtml(item.kehadiran)}</span>
+                </div>
+                <div class="wish-text">${escapeHtml(item.ucapan)}</div>
+              </div>
+            `;
+          });
+          wishesList.innerHTML = html;
+        })
+        .catch(() => {
+          wishesList.innerHTML = '<div style="text-align: center; color: var(--text-muted); font-size: 0.8rem;">Gagal memuat ucapan tamu.</div>';
+        });
+    }
+
+    // Keamanan Sanitasi HTML (XSS prevention)
+    function escapeHtml(text) {
+      if (!text) return '';
+      return text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    // Load data saat halaman pertama terbuka
+    document.addEventListener('DOMContentLoaded', loadWishes);
   </script>
 </body>
 </html>
